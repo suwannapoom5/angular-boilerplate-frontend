@@ -87,9 +87,9 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
       {
         menu_id: 1,
         official_menu_id: 1,
-        name: 'Dashboard',
+        name: 'API Testing',
         icon_name: 'home',
-        navigation_path: '/dashboard',
+        navigation_path: '/apitesting',
         sub_menu: null,
       },
       {
@@ -100,56 +100,56 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
         navigation_path: '/sandbox',
         sub_menu: null,
       },
-      {
-        menu_id: 3,
-        official_menu_id: 3,
-        name: 'จัดการข้อมูล',
-        icon_name: 'settings',
-        navigation_path: null,
-        sub_menu: [
-          {
-            menu_id: 31,
-            official_menu_id: 31,
-            name: 'จัดการผู้ใช้งาน',
-            icon_name: 'users',
-            navigation_path: '/user-management',
-            sub_menu: null,
-          },
-          {
-            menu_id: 32,
-            official_menu_id: 32,
-            name: 'จัดการสิทธิ์',
-            icon_name: 'user-shield',
-            navigation_path: '/user-role-management',
-            sub_menu: null,
-          },
-          {
-            menu_id: 33,
-            official_menu_id: 33,
-            name: 'ตั้งค่าระบบ',
-            icon_name: 'settings',
-            navigation_path: '/setting',
-            sub_menu: null,
-          },
-        ],
-      },
-      {
-        menu_id: 4,
-        official_menu_id: 4,
-        name: 'รายงาน',
-        icon_name: 'report',
-        navigation_path: null,
-        sub_menu: [
-          {
-            menu_id: 41,
-            official_menu_id: 41,
-            name: 'รายงานภาพรวม',
-            icon_name: 'file-chart',
-            navigation_path: '/report',
-            sub_menu: null,
-          },
-        ],
-      },
+      // {
+      //   menu_id: 3,
+      //   official_menu_id: 3,
+      //   name: 'จัดการข้อมูล',
+      //   icon_name: 'settings',
+      //   navigation_path: null,
+      //   sub_menu: [
+      //     {
+      //       menu_id: 31,
+      //       official_menu_id: 31,
+      //       name: 'จัดการผู้ใช้งาน',
+      //       icon_name: 'users',
+      //       navigation_path: '/user-management',
+      //       sub_menu: null,
+      //     },
+      //     {
+      //       menu_id: 32,
+      //       official_menu_id: 32,
+      //       name: 'จัดการสิทธิ์',
+      //       icon_name: 'user-shield',
+      //       navigation_path: '/user-role-management',
+      //       sub_menu: null,
+      //     },
+      //     {
+      //       menu_id: 33,
+      //       official_menu_id: 33,
+      //       name: 'ตั้งค่าระบบ',
+      //       icon_name: 'settings',
+      //       navigation_path: '/setting',
+      //       sub_menu: null,
+      //     },
+      //   ],
+      // },
+      // {
+      //   menu_id: 4,
+      //   official_menu_id: 4,
+      //   name: 'รายงาน',
+      //   icon_name: 'report',
+      //   navigation_path: null,
+      //   sub_menu: [
+      //     {
+      //       menu_id: 41,
+      //       official_menu_id: 41,
+      //       name: 'รายงานภาพรวม',
+      //       icon_name: 'file-chart',
+      //       navigation_path: '/report',
+      //       sub_menu: null,
+      //     },
+      //   ],
+      // },
     ] as any[];
   }
 

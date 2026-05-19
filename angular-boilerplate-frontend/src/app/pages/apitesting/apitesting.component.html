@@ -1,0 +1,56 @@
+<div class="container py-3">
+  <h4 class="mb-3">Dashboard API Test</h4>
+
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    <button class="btn btn-primary" (click)="testGet()">GET</button>
+    <button class="btn btn-success" (click)="testPost()">POST</button>
+    <button class="btn btn-warning" (click)="testPut()">PUT</button>
+    <button class="btn btn-info" (click)="testPatch()">PATCH</button>
+    <button class="btn btn-danger" (click)="testDelete()">DELETE</button>
+
+    <button class="btn btn-outline-danger" (click)="testDeleteWithBody()">
+      DELETE BODY
+    </button>
+
+    <button class="btn btn-outline-success" (click)="testPostFormData()">
+      POST FormData
+    </button>
+
+    <button class="btn btn-outline-warning" (click)="testPutFormData()">
+      PUT FormData
+    </button>
+
+    <button class="btn btn-outline-info" (click)="testPatchFormData()">
+      PATCH FormData
+    </button>
+
+    <button class="btn btn-outline-danger" (click)="testDeleteFormData()">
+      DELETE FormData
+    </button>
+
+    <button class="btn btn-secondary" (click)="testBlobGet()">
+      Blob GET
+    </button>
+
+    <button class="btn btn-dark" (click)="testBlobPost()">
+      Blob POST
+    </button>
+
+    <button class="btn btn-outline-secondary" (click)="clearResult()">
+      Clear
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="alert alert-info">
+    กำลังโหลดข้อมูล...
+  </div>
+
+  <div class="card" *ngIf="result">
+    <div class="card-header fw-semibold">
+      Response Result
+    </div>
+    <div class="card-body">
+      <pre class="mb-0">{{ result | json }}</pre>
+    </div>
+  </div>
+</div>
