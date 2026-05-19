@@ -1,0 +1,41 @@
+<div class="modal-content ">
+    @if (showModalHeader) {
+        <div class="modal-header border-0">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+                <h5 class="modal-title">{{ textTitle }}</h5>
+                <a class="text-dark" (click)="closeModal()" data-dismiss="modal" aria-label="Close">
+                    <app-tabler-icon [name]="_TablerIcon.X" [size]="20"></app-tabler-icon>
+                </a>
+            </div>
+        </div>
+    }
+    <div class="modal-body text-center border-0  {{showModalHeader ? 'pb-5' : 'pt-5 pb-4'}}" ngbAutofocus
+        [innerHTML]="htmlContent">
+    </div>
+    <div class="modal-footer px-1 border-0 justify-content-center">
+        <div class="row w-100 justify-content-center">
+            @if (showCancelBtn) {
+                <div class="col-6">
+                    <button type="button" (click)="cancel()"
+                        class="py-2 btn w-100 {{ classCancelBtn ? classCancelBtn : 'btn-outline-dark' }}">
+                        @if (iconCancelBtn) {
+                            <app-tabler-icon [name]="iconCancelBtn" [size]="20" [iconClass]="'me-2'"></app-tabler-icon>
+                        }
+                        {{ textCancelBtn }}
+                    </button>
+                </div>
+            }
+            @if (showConfirmBtn) {
+                <div class="col-6">
+                    <button type="button" (click)="confirm()"
+                        class="py-2 btn w-100 {{ classConfirmBtn ? classConfirmBtn : modalType == 'success' ? 'btn-' + (modalType == 'success' ? 'primary' : modalType) : 'btn-outline-' + modalType}}">
+                        @if (iconConfirmBtn) {
+                            <app-tabler-icon [name]="iconConfirmBtn" [size]="20" [iconClass]="'me-2'"></app-tabler-icon>
+                        }
+                        {{ textConfirmBtn }}
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

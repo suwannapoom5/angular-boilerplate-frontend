@@ -1,0 +1,9 @@
+<div class="block-ui-wrapper" [class.blocked]="isBlocked()">
+    <ng-content></ng-content>
+    <div class="block-overlay" [class.blocked]="isBlocked()">
+        <!-- <div class="block-spinner">
+            <span>{{ message() }}</span>
+        </div> -->
+       <span class="loader"></span>
+    </div>
+</div>

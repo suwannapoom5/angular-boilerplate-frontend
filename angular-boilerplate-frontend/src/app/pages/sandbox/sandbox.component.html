@@ -1,0 +1,285 @@
+<div class="container py-3">
+    <h4 class="mb-3">Form Sandbox</h4>
+
+    <div class="row g-3">
+
+        <!-- TEXT -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Text</label>
+                <input class="form-control" type="text" placeholder="Enter text">
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Text Required <span class="text-danger">*</span></label>
+                <input class="form-control is-invalid" type="text" placeholder="Required">
+                <div class="invalid-feedback">This field is required</div>
+            </div>
+
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input class="form-control" type="password" placeholder="Password">
+            </div>
+
+        </div>
+
+        <!-- NUMBER -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Number</label>
+                <input class="form-control" type="number" placeholder="123">
+            </div>
+
+        </div>
+
+        <!-- TEXTAREA -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Textarea</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+
+        </div>
+
+        <!-- SELECT -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Select</label>
+                <select class="form-select">
+                    <option selected>Choose...</option>
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- DATE -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Date</label>
+
+
+                <app-date-picker [(ngModel)]="submission_date" [labelText]="''"></app-date-picker>
+
+                <p>Date Value: {{ submission_date || '-'}}</p>
+
+            </div>
+
+        </div>
+
+        <!-- TIME -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Time</label>
+                <input class="form-control" type="time">
+            </div>
+
+        </div>
+
+        <!-- FILE -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">File</label>
+                <input class="form-control" type="file">
+            </div>
+
+        </div>
+
+        <!-- CHECKBOX -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label d-block">Checkbox</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="chk1">
+                    <label class="form-check-label" for="chk1">Check me</label>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RADIO -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label d-block">Radio</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio" id="r1">
+                    <label class="form-check-label" for="r1">Option 1</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio" id="r2">
+                    <label class="form-check-label" for="r2">Option 2</label>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SWITCH -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label d-block">Switch</label>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DISABLED -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Disabled</label>
+                <input class="form-control" type="text" disabled value="Disabled input">
+            </div>
+
+        </div>
+
+        <!-- READONLY -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Readonly</label>
+                <input class="form-control" type="text" readonly value="Readonly input">
+            </div>
+
+        </div>
+
+        <!-- SUCCESS STATE -->
+        <div class="col-6">
+            <div class="form-group">
+                <label class="form-label">Valid</label>
+                <input class="form-control is-valid" type="text" value="Looks good">
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container py-3">
+    <h4 class="mb-3">Button Sandbox</h4>
+
+    <!-- Basic -->
+    <div class="mb-3">
+        <h6>Basic</h6>
+        <button class="btn btn-primary me-2">Primary</button>
+        <button class="btn btn-secondary me-2">Secondary</button>
+        <button class="btn btn-success me-2">Success</button>
+        <button class="btn btn-danger me-2">Danger</button>
+        <button class="btn btn-warning me-2">Warning</button>
+        <button class="btn btn-info me-2">Info</button>
+        <button class="btn btn-light me-2">Light</button>
+        <button class="btn btn-dark me-2">Dark</button>
+    </div>
+
+    <!-- Outline -->
+    <div class="mb-3">
+        <h6>Outline</h6>
+        <button class="btn btn-outline-primary me-2">Primary</button>
+        <button class="btn btn-outline-secondary me-2">Secondary</button>
+        <button class="btn btn-outline-success me-2">Success</button>
+        <button class="btn btn-outline-danger me-2">Danger</button>
+    </div>
+
+    <!-- Sizes -->
+    <div class="mb-3">
+        <h6>Sizes</h6>
+        <button class="btn btn-primary btn-sm me-2">Small</button>
+        <button class="btn btn-primary me-2">Default</button>
+        <button class="btn btn-primary btn-lg me-2">Large</button>
+    </div>
+
+    <!-- Block -->
+    <div class="mb-3">
+        <h6>Block</h6>
+        <button class="btn btn-primary w-100 mb-2">Full Width</button>
+        <button class="btn btn-outline-primary w-100">Full Width Outline</button>
+    </div>
+
+    <!-- Disabled -->
+    <div class="mb-3">
+        <h6>Disabled</h6>
+        <button class="btn btn-primary me-2" disabled>Disabled</button>
+        <button class="btn btn-outline-secondary" disabled>Disabled Outline</button>
+    </div>
+
+    <!-- With Icon -->
+    <div class="mb-3">
+        <h6>With Icon</h6>
+        <button class="btn btn-primary d-inline-flex align-items-center gap-2 me-2">
+            <app-tabler-icon [name]="_TablerIcon.Plus"></app-tabler-icon>
+            Add
+        </button>
+
+        <button class="btn btn-danger d-inline-flex align-items-center gap-2">
+            <app-tabler-icon [name]="_TablerIcon.Trash"></app-tabler-icon>
+            Delete
+        </button>
+    </div>
+
+    <!-- Icon Only -->
+    <div class="mb-3">
+        <h6>Icon Only</h6>
+        <button class="btn btn-primary rounded-circle p-2 me-2">
+            <app-tabler-icon [name]="_TablerIcon.Plus"></app-tabler-icon>
+        </button>
+
+        <button class="btn btn-outline-secondary rounded-circle p-2">
+            <app-tabler-icon [name]="_TablerIcon.Settings"></app-tabler-icon>
+        </button>
+    </div>
+
+    <!-- Loading -->
+    <div class="mb-3">
+        <h6>Loading</h6>
+        <button class="btn btn-primary me-2" disabled>
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Loading...
+        </button>
+    </div>
+
+    <!-- Button Group -->
+    <div class="mb-3">
+        <h6>Button Group</h6>
+        <div class="btn-group">
+            <button class="btn btn-primary">Left</button>
+            <button class="btn btn-primary">Middle</button>
+            <button class="btn btn-primary">Right</button>
+        </div>
+    </div>
+
+    <!-- Dialog / Alert Sandbox -->
+    <div class="mb-3">
+        <h4 class="mb-3">Dialog / Alert Sandbox</h4>
+
+        <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-warning" (click)="openWarningDialog()">
+                Warning Dialog
+            </button>
+
+            <button class="btn btn-danger" (click)="openErrorDialog()">
+                Error Dialog
+            </button>
+
+            <button class="btn btn-success" (click)="openSuccessDialog()">
+                Success Dialog
+            </button>
+
+            <button class="btn btn-primary" (click)="showAlertSuccess()">
+                Alert Success
+            </button>
+
+            <button class="btn btn-outline-danger" (click)="showAlertDeleteSuccess()">
+                Alert Delete Success
+            </button>
+        </div>
+    </div>
+
+
+</div>

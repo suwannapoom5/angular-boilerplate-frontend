@@ -1,0 +1,47 @@
+@if (isPc$ | async) {
+    <div class="custom-dropdown">
+        <div class="dropdown-toggle d-flex justify-content-end align-items-center no-arrow rounded py-1"
+            (click)="toggleDropdown($event, notiMenu)" style="cursor: pointer;">
+            <app-tabler-icon [name]="iconName" [size]="20" [iconClass]="'text-dark ms-2 me-1'"></app-tabler-icon>
+        </div>
+
+
+        <div #notiMenu class="custom-dropdown-menu py-1 animate-left border-0 shadow-lg" (click)="closeActiveMenu()"
+            [class.show]="activeMenu === notiMenu">
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+
+        </div>
+    </div>
+} @else {
+
+    <a (click)="toggleNotiMobileDetailcanvas()">
+        <app-tabler-icon [name]="iconName" [size]="20" [iconClass]="'text-dark ms-1'"></app-tabler-icon>
+    </a>
+
+
+    @if (isNotiMobileDetailOpen) {
+    <div *ngIf="isNotiMobileDetailOpen" class="noti-mobile-detail-overlay"
+        (click)="toggleNotiMobileDetailcanvas()">
+    </div>
+
+    <div class="noti-mobile-detail {{isNotiMobileDetailOpen ? 'show' : ''}}">
+        <div class="p-6">
+            <div class="offcanvas-header dropdown-item-border pb-2 px-2">
+                <div class="d-flex align-items-center">
+                    <ng-content select="[mobile-header]"></ng-content>
+                </div>
+                <button type="button" class="btn-close" (click)="toggleNotiMobileDetailcanvas()"
+                    aria-label="Close"></button>
+            </div>
+
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+
+        </div>
+    </div>
+    }
+
+}
+
+<ng-template #content>
+    <ng-content select="[body]"></ng-content>
+</ng-template>

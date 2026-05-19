@@ -1,0 +1,255 @@
+<div class="bg-white px-2 shadow-sm fixed-top " style="border-bottom: 1px solid rgba(212, 212, 212, 1);">
+    <ng-container *ngTemplateOutlet="navbarPC"></ng-container>
+</div>
+
+
+<ng-template #navbarPC>
+    <div class="container-fluid d-flex justify-content-start align-items-center navbar py-2">
+
+        @if (unAuthen) {
+
+            <a (click)="goLoginPage()" class="navbar-logo d-flex align-items-center">
+                <img src="/assets/logo/navbar-logo.png" alt="" srcset="">
+                <p class="mb-0 mx-2">ทดสอบ<span>ทดสอบ</span></p>
+            </a>
+
+
+        } @else {
+            <div class="d-flex w-100">
+                @if ((isPc$ | async)) {
+                    <div class="">
+                        <div class="dummy-sidebar-gap">
+
+                        </div>
+                    </div>
+                }
+                <div class="d-flex justify-content-between w-100 px-2">
+
+                    <div class="page-title-box d-flex align-items-center">
+                        <h5 class="page-title">{{ title }}</h5>
+                        @if (subTitle) {
+                            <h6 class="page-sub-title fw-light">&nbsp;|&nbsp;{{ subTitle }}</h6>
+                        }
+                    </div>
+
+                    <!-- เมนูอื่นๆ -->
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex gap-2 px-3 me-3" style="border-right: 1px solid rgba(212, 212, 212, 1);">
+                            <app-notification-list></app-notification-list>
+
+
+
+                            <div (click)="goChatPage()"
+                                class="dropdown-toggle d-flex justify-content-center align-items-center no-arrow rounded border-light-grey p-1 btn position-relative rounded-circle nodropdown-arrow"
+                                style="background-color: rgba(240, 249, 255, 1);" data-bs-auto-close="outside"
+                                id="dropdown-noti" data-bs-toggle="dropdown" aria-expanded="false">
+                                <app-tabler-icon [name]="_TablerIcon.MessageCircle"
+                                    [class]="'text-primary-3'"></app-tabler-icon>
+
+                                @if (chat_noti_count > 0) {
+                                    <span class="noti-dot"></span>
+                                }
+                            </div>
+                        </div>
+
+
+                        <div class="dropdown">
+                            <!-- Dropdown Toggle -->
+                            <div class="nav-link dropdown-toggle d-flex align-items-center gap-2 gap-md-3 nodropdown-arrow"
+                                role="button" data-bs-toggle="dropdown">
+
+                                <div class="d-none d-md-block text-start">
+                                    <div class="d-flex align-items-center">
+
+                                        <div class="user-badge align-items-center">
+                                            <p class="mb-0 text-primary-3 fw-bold">
+                                                <!-- {{ userDetail?.display_name }} -->
+                                                Firstname Lastname
+                                            </p>
+                                            <small class="mb-0">
+                                                <!-- {{ userDetail?.role_name || "-"}} -->
+                                                SuperAdmin
+                                            </small>
+                                        </div>
+
+                                        <app-tabler-icon [name]="_TablerIcon.UserCircle" [class]="'text-primary-3 mx-3'"
+                                            [size]="35"></app-tabler-icon>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown-menu dropdown-menu-end shadow-sm mt-2 border-0 shadow-lg rounded-3"
+                                style="min-width: 275px;">
+                                <div class="d-flex align-items-center px-2 py-2 dropdown-item-border ">
+                                    <ng-container class="w-100" *ngTemplateOutlet="userDropdownHeader"></ng-container>
+                                </div>
+                                <ng-container *ngTemplateOutlet="userDropdownBody"></ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+
+
+</ng-template>
+
+<ng-template #navbarMobile>
+    <div class="d-flex justify-content-between align-items-center w-100">
+        @if (unAuthen) {
+            <div class="d-flex justify-content-start align-items-center">
+                <a (click)="goHomePage()" class="navbar-logo d-flex align-items-center">
+                    <img src="/assets/logo/navbar-logo.png" alt="" srcset="">
+                </a>
+            </div>
+        } @else {
+
+
+            <div class="d-flex justify-content-start align-items-center">
+                <a class="" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft"
+                    aria-controls="offcanvasLeft">
+                    <app-tabler-icon [name]="_TablerIcon.Menu2" [class]="'text-muted ms-1 me-2'"></app-tabler-icon>
+                </a>
+                <a (click)="goHomePage()" class="navbar-logo d-flex align-items-center">
+                    <img src="/assets/logo/navbar-logo.png" alt="" srcset="">
+                </a>
+            </div>
+
+            <div>
+                <app-notification-list></app-notification-list>
+
+                <a class="mx-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-user"
+                    aria-controls="offcanvasRight">
+                    <app-tabler-icon [name]="_TablerIcon.UserCircle" [class]="'text-primary-3'"></app-tabler-icon>
+                </a>
+            </div>
+        }
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+        <div class="offcanvas-header">
+            <a (click)="goHomePage()" class="navbar-logo d-flex align-items-center">
+                <img src="/assets/logo/navbar-logo.png" alt="" srcset="">
+            </a>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <a (click)="goHomePage()" data-bs-dismiss="offcanvas"
+                class="d-flex justify-content-between align-items-center px-2 py-3 dropdown-item-border dropdown-item"
+                data-bs-dismiss="offcanvas">
+                <div class="d-flex align-items-center">
+                    <p class="mb-0">หน้าแรก</p>
+                </div>
+                <app-tabler-icon [name]="_TablerIcon.ChevronRight" [class]="'text-muted'"></app-tabler-icon>
+            </a>
+            <a (click)="goAgriAreaPage()" data-bs-dismiss="offcanvas"
+                class="d-flex justify-content-between align-items-center px-2 py-3 dropdown-item-border dropdown-item"
+                data-bs-dismiss="offcanvas">
+                <div class="d-flex align-items-center">
+                    <p class="mb-0">แปลงเกษตร</p>
+                </div>
+                <app-tabler-icon [name]="_TablerIcon.ChevronRight" [class]="'text-muted'"></app-tabler-icon>
+            </a>
+
+            <a (click)="goCalendarPage()" data-bs-dismiss="offcanvas"
+                class="d-flex justify-content-between align-items-center px-2 py-3 dropdown-item-border dropdown-item"
+                data-bs-dismiss="offcanvas">
+                <div class="d-flex align-items-center">
+                    <p class="mb-0">ปฏิทิน</p>
+                </div>
+                <app-tabler-icon [name]="_TablerIcon.ChevronRight" [class]="'text-muted'"></app-tabler-icon>
+            </a>
+
+            <a (click)="goShopPage()" data-bs-dismiss="offcanvas"
+                class="d-flex justify-content-between align-items-center px-2 py-3 dropdown-item-border dropdown-item"
+                data-bs-dismiss="offcanvas">
+                <div class="d-flex align-items-center">
+                    <p class="mb-0">สินค้าฯ</p>
+                </div>
+                <app-tabler-icon [name]="_TablerIcon.ChevronRight" [class]="'text-muted'"></app-tabler-icon>
+            </a>
+            <a (click)="goServicePage()" data-bs-dismiss="offcanvas"
+                class="d-flex justify-content-between align-items-center px-2 py-3 dropdown-item-border dropdown-item"
+                data-bs-dismiss="offcanvas">
+                <div class="d-flex align-items-center">
+                    <p class="mb-0">บริการ</p>
+                </div>
+                <app-tabler-icon [name]="_TablerIcon.ChevronRight" [class]="'text-muted'"></app-tabler-icon>
+            </a>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas-user" aria-labelledby="offcanvas-user">
+        <div class="offcanvas-header dropdown-item-border">
+            <div class="d-flex align-items-center px-2 py-2">
+                <ng-container *ngTemplateOutlet="userDropdownHeader"></ng-container>
+
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ng-container *ngTemplateOutlet="userDropdownBody"></ng-container>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #userDropdownHeader>
+    <app-tabler-icon [name]="_TablerIcon.UserCircle" [class]="'text-primary-3 ms-1 me-2'" [size]="35"></app-tabler-icon>
+    <div class="user-badge align-items-center ms-1">
+        <div class="d-flex align-items-center username">
+            <p class="mb-0 text-primary-3 fw-bold">{{ userDetail?.display_name || "Firstname Lastname"}}</p>
+        </div>
+        <small class="mb-0">{{ userDetail?.role_name || "-"}}</small>
+    </div>
+</ng-template>
+
+<ng-template #userDropdownBody>
+    <div class="d-flex justify-content-between align-items-center px-2 py-3 dropdown-item-border dropdown-item"
+        data-bs-dismiss="offcanvas" (click)="goPointSummaryPage()">
+        <div class="d-flex align-items-center">
+            <app-tabler-icon [name]="_TablerIcon.UserEdit" [class]="'text-dark ms-1 me-3'"></app-tabler-icon>
+            <p class="mb-0">คะแนนสะสม</p>
+        </div>
+        <app-tabler-icon [name]="_TablerIcon.ChevronRight" [class]="'text-muted'"></app-tabler-icon>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center px-2 py-3 dropdown-item-border dropdown-item"
+        data-bs-dismiss="offcanvas" (click)="goMemberPage()">
+        <div class="d-flex align-items-center">
+            <app-tabler-icon [name]="_TablerIcon.UserEdit" [class]="'text-dark ms-1 me-3'"></app-tabler-icon>
+            <p class="mb-0">ภาคีสมาชิก</p>
+        </div>
+        <app-tabler-icon [name]="_TablerIcon.ChevronRight" [class]="'text-muted'"></app-tabler-icon>
+    </div>
+
+
+    <div class="d-flex justify-content-between align-items-center px-2 py-3 dropdown-item-border dropdown-item"
+        data-bs-dismiss="offcanvas" (click)="goUserRequestPage()">
+        <div class="d-flex align-items-center">
+            <app-tabler-icon [name]="_TablerIcon.Receipt" [class]="'text-dark ms-1 me-3'"></app-tabler-icon>
+            <p class="mb-0">แจ้งความประสงค์</p>
+        </div>
+        <app-tabler-icon [name]="_TablerIcon.ChevronRight" [class]="'text-muted'"></app-tabler-icon>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-2 py-3 dropdown-item-border dropdown-item"
+        data-bs-dismiss="offcanvas" (click)="goConsentPage()">
+        <div class="d-flex align-items-center">
+            <app-tabler-icon [name]="_TablerIcon.LockPassword" [class]="'text-dark ms-1 me-3'"></app-tabler-icon>
+            <p class="mb-0">ข้อกำหนดและเงื่อนไข</p>
+        </div>
+        <app-tabler-icon [name]="_TablerIcon.ChevronRight" [class]="'text-muted'"></app-tabler-icon>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center ">
+        <button (click)="logout()">
+            <app-tabler-icon [name]="_TablerIcon.Logout" [class]="'text-dark ms-1 me-3'"></app-tabler-icon>
+            <p class="mb-0">ออกจากระบบ</p>
+        </button>
+    </div>
+</ng-template>

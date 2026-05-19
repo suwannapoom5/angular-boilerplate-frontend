@@ -1,0 +1,52 @@
+.navbar-logo {
+  text-decoration: none;
+  cursor: pointer;
+
+  img {
+    max-height: 50px;
+    max-width: 50px;
+    margin-block: 0.25rem;
+  }
+}
+
+.link-panel {
+  a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      color 0.15s ease-in-out,
+      background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out;
+  }
+
+  a:hover {
+    color: var(--color-primary-1);
+  }
+}
+
+.user-badge {
+  .username {
+    height: 17px;
+    margin-top: 0.2rem;
+  }
+}
+
+.navbar {
+  // color: white;
+  opacity: 1;
+  height: 72px;
+}
+
+.dummy-sidebar-gap {
+  width: 330px;
+}
+
+.page-title-box {
+  h5 {
+    margin: 0;
+  }
+  h6 {
+    margin-top: 0.75rem;
+  }
+}

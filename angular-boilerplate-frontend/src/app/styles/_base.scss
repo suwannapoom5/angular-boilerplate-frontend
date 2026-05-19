@@ -1,0 +1,23 @@
+body {
+  font-family: "Prompt", "Noto Sans Thai", sans-serif !important;
+  background-color: #f5f5f5 !important;
+  min-height: 100vh;
+
+  overflow: clip !important;
+}
+
+pre {
+  font-family: "Prompt", "Noto Sans Thai", sans-serif !important;
+}
+
+html {
+  overflow: auto;
+}
+
+body.modal-open {
+  padding-right: 0px !important;
+}
+
+.popover {
+  font-family: "Prompt", "Noto Sans Thai", sans-serif !important;
+}

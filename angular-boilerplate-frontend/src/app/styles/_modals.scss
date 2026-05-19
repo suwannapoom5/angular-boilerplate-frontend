@@ -1,0 +1,29 @@
+.modal.fade.show .modal-dialog {
+  animation: fadeZoomIn 500ms cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+.modal.fade .modal-dialog {
+  animation: fadeZoomOut 500ms cubic-bezier(0.075, 0.82, 0.165, 1) backwards;
+}
+.modal-backdrop {
+  opacity: 1 !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+.modal-content {
+  border: none !important;
+  border-radius: 1rem !important;
+}
+
+.swal2-image {
+  width: 60px;
+  height: 60px;
+  margin-top: 3em;
+}
+
+.swal2-title {
+  font-size: 20px !important;
+}
+
+.swal2-modal {
+  width: 300px;
+}

@@ -1,0 +1,129 @@
+@if ((isPc$ | async)) {
+    <div class="dropdown">
+
+        <div (click)="openNoti()"
+            class="dropdown-toggle d-flex justify-content-center align-items-center no-arrow rounded border-light-grey p-1 btn position-relative rounded-circle nodropdown-arrow"
+            style="background-color: rgba(243, 250, 235, 1);" data-bs-auto-close="outside" id="dropdown-noti"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <app-tabler-icon [name]="_TablerIcon.Bell" [class]="'text-primary-3'"></app-tabler-icon>
+
+            @if (noti_count > 0) {
+                <span class="noti-dot"></span>
+            }
+        </div>
+
+
+        <div class="dropdown-menu dropdown-menu-end px-0 border-0 shadow-lg rounded-lg pb-3 noti-dropdown"
+            style="min-width: 400px; max-width: 400px;" aria-labelledby="dropdown-noti">
+            <div class="d-flex align-items-center px-3 pb-3 pt-2 dropdown-item-border">
+                <app-tabler-icon [name]="_TablerIcon.Bell" [class]="'text-primary-3 ms-2 me-3'"></app-tabler-icon>
+                <p class="text-primary-3 mb-0">การแจ้งเตือน</p>
+            </div>
+
+            <div class="noti-dropdown-body px-0">
+                @if (noti_list.length) {
+                    <ng-container *ngFor="let noti of noti_list; let i = index">
+                        <ng-container *ngTemplateOutlet="notiBadge; context: { noti: noti }"></ng-container>
+                    </ng-container>
+                } @else {
+                    <ng-container *ngTemplateOutlet="no_noti;"></ng-container>
+                }
+
+            </div>
+        </div>
+    </div>
+} @else {
+
+
+    <a (click)="openNoti()" class="mx-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-noti"
+        aria-controls="offcanvas-noti">
+        <app-tabler-icon [name]="_TablerIcon.Bell" [class]="'text-primary-3'"></app-tabler-icon>
+
+        @if (noti_count > 0) {
+            <span class="noti-dot"></span>
+        }
+    </a>
+
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas-noti" aria-labelledby="offcanvas-noti">
+        <div class="offcanvas-header dropdown-item-border">
+            <div class="d-flex align-items-center px-2 py-3">
+                <app-tabler-icon [name]="_TablerIcon.Bell" [class]="'text-primary-3 me-2'"></app-tabler-icon>
+                <p class="text-primary-3 mb-0">การแจ้งเตือน</p>
+            </div>
+            <button type="button" class="btn-close me-0" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body py-0">
+            @if (noti_list.length) {
+                <ng-container *ngFor="let noti of noti_list">
+                    <ng-container *ngTemplateOutlet="notiBadge; context: { noti: noti }"></ng-container>
+                </ng-container>
+            } @else {
+                <ng-container *ngTemplateOutlet="no_noti;"></ng-container>
+            }
+
+        </div>
+    </div>
+}
+
+<ng-template #no_noti>
+    <div class="d-flex justify-content-center align-items-center px-0 py-2 dropdown-item w-100 h-100">
+        <div class="text-center">
+            <p>ไม่พบข้อมูลการแจ้งเตือน</p>
+            <a (click)="getNotifications()">
+                <app-tabler-icon [name]="_TablerIcon.Refresh" [class]="'text-primary-3'" [size]="16"></app-tabler-icon>
+                <small class="mx-2 text-primary-3">โหลดข้อมูลการแจ้งเตือน</small>
+            </a>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #notiBadge let-noti="noti">
+    <div class="d-flex justify-content-between align-items-center px-0 py-2 dropdown-item-border dropdown-item w-100 noti-row"
+        [class.noti-is-readed]="noti.is_read">
+        <div class="d-flex align-items-center" data-bs-dismiss="offcanvas">
+            <app-tabler-icon [name]="noti.icon" [class]="'ms-3 me-3 ' + getNotiRowClass(noti)"></app-tabler-icon>
+            <div class="">
+                <a (click)="goRouteNoti(noti)" [ngClass]="getNotiRowClass(noti)" style="white-space: pre-wrap">
+                    <small class="mb-0 fw-normal" [innerHTML]="getSafeHTML(noti.msg)">
+                    </small>
+                </a>
+
+                <br>
+                <small class="fw-light text-muted">
+                    {{noti.create_date | thaidate : 'D MMM YYYY'}}
+                </small>
+            </div>
+        </div>
+
+        <app-dropdown>
+            <ng-container mobile-header>
+                <app-tabler-icon [name]="noti.icon" [class]="'text-dark ms-3 me-3'"></app-tabler-icon>
+                <div>
+                    <small class="mb-0 fw-normal" style="white-space: pre-wrap;" [innerHTML]="getSafeHTML(noti.msg)">
+                    </small>
+                    <br>
+                    <small class="fw-light text-muted">
+                        {{noti.create_date | thaidate : 'D MMM YYYY'}}
+                    </small>
+                </div>
+            </ng-container>
+
+
+            <ng-container body>
+                <div class="d-flex align-items-center px-3 py-2 dropdown-item dropdown-item-border"
+                    (click)="markReadNoti(noti)">
+                    <app-tabler-icon [name]="_TablerIcon.Check" [class]="'me-2'" [size]="20"></app-tabler-icon><small
+                        class="mb-0">ทำเครื่องหมายอ่านแล้ว</small>
+
+                </div>
+
+                <div class="d-flex align-items-center px-3 py-2 dropdown-item dropdown-item-border"
+                    (click)="deleteNoti(noti)">
+                    <app-tabler-icon [name]="_TablerIcon.Trash" [class]="'me-2'" [size]="20"></app-tabler-icon><small
+                        class="mb-0">ลบข้อความ</small>
+                </div>
+            </ng-container>
+        </app-dropdown>
+    </div>
+</ng-template>

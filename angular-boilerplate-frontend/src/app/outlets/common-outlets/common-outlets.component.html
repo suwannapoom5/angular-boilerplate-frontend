@@ -1,0 +1,16 @@
+<main class="flex-grow-1">
+    <div class="d-lg-flex">
+        <app-sidebar #sidebar></app-sidebar>
+        <div class="flex-fill custom-margin-main-container" id="main-content">
+            <app-header></app-header>
+            <div class="container-fluid px-md-3 pt-4">
+
+                <div class="w-100" style="padding-top: 4rem;">
+                    <router-outlet></router-outlet>
+                </div>
+
+                <!-- <app-footer></app-footer> -->
+            </div>
+        </div>
+    </div>
+</main>

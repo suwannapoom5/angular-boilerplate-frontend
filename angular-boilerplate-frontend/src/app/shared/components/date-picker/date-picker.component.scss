@@ -1,0 +1,144 @@
+::ng-deep ngb-datepicker {
+  box-shadow: var(--bs-box-shadow) !important;
+  border: 0 !important;
+  border-radius: 1rem !important;
+
+  [ngbDatepickerDayView] {
+    font-weight: 300 !important;
+  }
+
+  .ngb-dp-header {
+    padding-top: 0.75rem !important;
+    margin-inline: 0.5rem !important;
+    background-color: white !important;
+    border-radius: 1rem 1rem 0 0 !important;
+    padding-bottom: 0.75rem !important;
+
+    border-bottom: 1px solid rgba(212, 212, 212, 1) !important;
+  }
+  .ngb-dp-month .ngb-dp-week:last-child {
+    border-radius: 0 0 1rem 1rem !important;
+  }
+
+  .ngb-dp-navigation-select {
+    gap: 0.5rem;
+  }
+
+  .ngb-dp-day,
+  .ngb-dp-weekday {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    align-items: center !important;
+    justify-items: center !important;
+  }
+
+  .ngb-dp-week {
+    padding-inline: 0.5rem !important;
+    background-color: white !important;
+    border-bottom: unset !important;
+  }
+
+  .ngb-dp-weekday {
+    font-style: normal !important;
+    color: var(--color-primary-1) !important;
+    background-color: white !important;
+    border-bottom: unset !important;
+  }
+
+  .bg-primary {
+    background-color: var(--color-primary-3) !important;
+  }
+
+  .btn-link span {
+    color: var(--color-primary-3) !important;
+  }
+
+  .ngb-dp-arrow-btn:hover {
+    background-color: unset !important;
+  }
+
+  .ngb-dp-arrow-btn {
+    height: 100% !important;
+  }
+
+  .ngb-dp-month-name {
+    font-size: large !important;
+  }
+}
+
+.form-calendar {
+  background-color: white;
+}
+.btn-calendar {
+  z-index: 5;
+  background-color: unset;
+}
+
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+.custom-day.focused {
+  background-color: #e6e6e6;
+}
+.custom-day.range,
+.custom-day:hover {
+  background-color: var(--color-primary-3);
+  color: white;
+  border-radius: 0.25rem;
+}
+.custom-day.faded {
+  background-color: rgba(16, 124, 62, 0.25);
+  border-radius: 0.25rem;
+}
+
+.month-picker {
+  ::ng-deep ngb-datepicker-month {
+    display: none !important;
+  }
+
+  ::ng-deep .ngb-dp-header {
+    width: 200px !important;
+    border-bottom: none !important;
+    padding-bottom: 0px !important;
+    margin: 0px !important;
+  }
+
+  ::ng-deep button.btn.ngb-dp-arrow-btn,
+  ::ng-deep .ngb-dp-arrow {
+    display: none !important;
+  }
+
+  &.border-danger {
+    ::ng-deep ngb-datepicker-navigation-select > .form-select {
+      border-color: var(--color-danger) !important;
+    }
+  }
+}
+
+.selected-month-container,
+.selected-year-container {
+  ::ng-deep ngb-datepicker {
+    box-shadow: none !important;
+  }
+
+  ::ng-deep ngb-datepicker-navigation-select > .form-select {
+    height: 42px !important;
+  }
+}
+
+.selected-year-container {
+  .year-picker-1,
+  .year-picker-2 {
+    ::ng-deep ngb-datepicker-navigation-select > .form-select:first-child {
+      display: none !important;
+    }
+  }
+}
+
+.date-disable {
+  background-color: rgba(229, 229, 229, 1) !important;
+}

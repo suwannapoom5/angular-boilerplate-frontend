@@ -1,0 +1,81 @@
+<nav class="main-sidebar" id="sidebar">
+    <div class="d-flex justify-content-between align-items-center">
+        <a class="navbar-logo d-flex align-items-center">
+            <img src="/assets/logo/logo_notext.png" alt="" srcset="" style="padding-inline: 0.6rem;">
+
+            <a (click)="goHomePage()" class="navbar-logo d-flex align-items-center my-1">
+                <img src="/assets/logo/navbar-logo.png" alt="" srcset="">
+                <div class="mb-2 mt-2">
+                    <p class="mb-0 mx-2 text-primary">ทดสอบ<span>ทดสอบ</span></p>
+                    <small class="mb-0 mx-2 text-primary">ทดสอบ</small>
+                </div>
+            </a>
+        </a>
+    </div>
+
+    <ul class="nav flex-column px-2 pt-2" style="border-top:  1px solid rgba(212, 212, 212, 1);">
+        <ng-container *ngFor="let item of menuItems">
+            <ng-container *ngIf="forceHide(item.menu_id)">
+                <li class="nav-item sidebar-submenu" [class.has-submenu]="item.sub_menu"
+                    ngbTooltip="{{ !item.sub_menu ? item.name : '' }}" [tooltipClass]="'tooltip-primary'">
+                    <div class="nav-link sidebar-item submenu-title justify-content-between"
+                        [class.has-submenu]="item.sub_menu" (click)="item.sub_menu ? toggleSubmenu(item) : null"
+                        [routerLink]="!item.sub_menu ? item.navigation_path : null" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: item.navigation_path === '/' }"
+                        [class.collapsed]="isSubmenuCollapsed(item)">
+                        <span class="sidebar-item">
+                            <span class="sidebar-icon">
+                                <app-tabler-icon [name]="item.icon_name" [strokeWidth]="2"
+                                    class="text-primary-3"></app-tabler-icon>
+                            </span>
+                            <span class="sidebar-label">{{ item.name }}</span>
+                        </span>
+
+                        <div class="d-flex align-items-center symbol">
+                            <!-- <span *ngIf="item.official_menu_id == _MenuEnum.Notification && noti_count >= 1"
+                                class="noti-badge">
+                                {{noti_count > 9 ? '9+' : noti_count}}
+                            </span> -->
+                            <span *ngIf="item.sub_menu" class="sidebar-label">
+                                <app-tabler-icon [name]="isSubmenuCollapsed(item) ? 'chevron-down' : 'chevron-up'"
+                                    class="text-muted"></app-tabler-icon>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Submenu -->
+                    <ul *ngIf="item.sub_menu && !isSubmenuCollapsed(item)" class="nav flex-column ms-4">
+                        <ng-container *ngFor="let sub of item.sub_menu">
+
+                            <li class="nav-item " ngbTooltip="{{ sub.name }}" [tooltipClass]="'tooltip-primary'">
+                                <a class="nav-link sidebar-item submenu-item" [routerLink]="sub.navigation_path"
+                                    routerLinkActive="active" (click)="closeMobileSidebar()">
+                                    @if (sub.icon_name) {
+                                        <span class="sidebar-icon" *ngIf="sub.icon_name">
+                                            <app-tabler-icon [name]="$any(sub.icon_name)"
+                                                class="text-primary-3"></app-tabler-icon>
+                                        </span>
+                                    } @else {
+                                        <span style="width: 20px; height: 35px;"></span>
+                                    }
+
+                                    <span class="sidebar-label">{{ sub.name }}</span>
+                                </a>
+                            </li>
+
+                        </ng-container>
+                    </ul>
+                </li>
+            </ng-container>
+        </ng-container>
+        <!-- <li class="nav-item" ngbTooltip="ออกจากระบบ" [tooltipClass]="'tooltip-primary'">
+            <a class="nav-link sidebar-item" (click)="closeMobileSidebar();logout();">
+                <span class="sidebar-icon">
+                    <app-tabler-icon [name]="_TablerIcon.Logout" [strokeWidth]="2"
+                        class="text-primary-3"></app-tabler-icon>
+                </span>
+                <span class="sidebar-label">ออกจากระบบ</span>
+            </a>
+        </li> -->
+    </ul>
+</nav>

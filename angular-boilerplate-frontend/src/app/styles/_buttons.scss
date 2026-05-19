@@ -1,0 +1,57 @@
+.btn:not(.btn-group .btn, .btn.rounded-circle) {
+  border-radius: 0.5rem !important;
+}
+
+.btn-group > .btn:first-child {
+  border-top-left-radius: 0.5rem !important;
+  border-bottom-left-radius: 0.5rem !important;
+}
+
+.btn-group > .btn:last-child {
+  border-top-right-radius: 0.5rem !important;
+  border-bottom-right-radius: 0.5rem !important;
+}
+
+/* PRIMARY = เขียวเข้ม */
+.btn-primary {
+  background-color: #2f6b1f !important;
+  border-color: #2f6b1f !important;
+  color: #fff !important;
+}
+
+/* HOVER */
+.btn-primary:hover {
+  background-color: #3f8a2a !important;
+  border-color: #3f8a2a !important;
+}
+
+/* ACTIVE */
+.btn-primary:active,
+.btn-primary.active,
+.show > .btn-primary.dropdown-toggle {
+  background-color: #255318 !important;
+  border-color: #255318 !important;
+}
+
+/* FOCUS */
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(63, 138, 42, 0.4) !important;
+}
+
+/* DISABLED */
+.btn-primary:disabled,
+.btn-primary.disabled {
+  background-color: #bfbfbf !important;
+  border-color: #bfbfbf !important;
+  color: #fff !important;
+}
+
+.btn-outline-primary {
+  color: #2f6b1f !important;
+  border-color: #2f6b1f !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #2f6b1f !important;
+  color: #fff !important;
+}

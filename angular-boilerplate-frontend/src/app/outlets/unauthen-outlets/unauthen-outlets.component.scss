@@ -1,0 +1,12 @@
+.unauthen-layouts {
+  background: linear-gradient(
+    180deg,
+    rgba(190, 255, 153, 0.28) 0%,
+    rgba(226, 244, 211, 0) 100%
+  );
+
+  img.unauthen-cover-img {
+    min-height: calc(100vh - 66px);
+    max-height: calc(100vh - 66px);
+  }
+}

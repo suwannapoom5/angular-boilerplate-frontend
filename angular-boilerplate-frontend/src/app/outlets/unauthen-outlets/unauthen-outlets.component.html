@@ -1,0 +1,22 @@
+<app-header [unAuthen]="true"></app-header>
+<main class="unauthen-layouts" style="padding-top: 0rem">
+    <div class="h-100 d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 66px - 2rem);">
+        @if (showCoverImg) {
+            <div class="container-fluid px-0 d-flex justify-content-center">
+                <div class="w-100 d-flex">
+                    @if (isPc$ | async) {
+                        <img src="/assets/imgs/unauthen-cover.png" class="unauthen-cover-img" alt="">
+                    }
+                    <div class="w-100 d-flex justify-content-center h-100 align-items-center" style="padding-top: 2rem">
+                        <router-outlet />
+                    </div>
+
+                </div>
+            </div>
+        } @else {
+            <div class="container-xl d-flex justify-content-center">
+                <router-outlet />
+            </div>
+        }
+    </div>
+</main>

@@ -1,0 +1,108 @@
+.text-editor-wrapper {
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "Noto Sans Thai", "Tahoma", Arial, sans-serif;
+}
+
+.text-editor-wrapper .ql-toolbar {
+  border: 0 !important;
+  padding: 8px 10px;
+}
+
+.text-editor-wrapper .ql-container {
+  border-radius: 1rem;
+}
+
+.text-editor-container.is-invalid {
+  ::ng-deep .ql-container {
+    border: 1px solid red !important;
+  }
+}
+
+.ql-editor.ql-blank::before {
+  color: #9ca3af;
+  font-style: normal;
+}
+
+$icon: #374151;
+$accent: #16a34a;
+
+.ql-snow .ql-stroke {
+  stroke: $icon;
+}
+.ql-snow .ql-fill {
+  fill: $icon;
+}
+.ql-snow .ql-picker {
+  color: $icon;
+}
+
+.ql-snow .ql-picker-label:hover,
+.ql-snow .ql-picker-item:hover,
+.ql-snow .ql-active .ql-stroke,
+.ql-snow .ql-active .ql-fill,
+.ql-snow .ql-toolbar button:hover .ql-stroke,
+.ql-snow .ql-toolbar button:hover .ql-fill {
+  stroke: $accent;
+  fill: $accent;
+  color: $accent;
+}
+
+button.ql-undo::before,
+button.ql-redo::before {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.ql-color .ql-picker-options [data-value="custom-color"] {
+  background: none !important;
+  width: 100% !important;
+  height: 20px !important;
+  text-align: center;
+}
+
+.ql-color .ql-picker-options [data-value="custom-color"]:before {
+  content: "Custom Color";
+}
+
+.ql-color .ql-picker-options [data-value="custom-color"]:hover {
+  border-color: transparent !important;
+}
+
+.ql-editor.ql-blank {
+  min-height: 260px !important;
+}
+
+:host ::ng-deep .ql-editor img {
+  cursor: move;
+  touch-action: none;
+}
+
+:host ::ng-deep .ql-editor ol {
+  list-style-type: decimal !important;
+  list-style-position: outside !important;
+  margin-left: 1.5rem;
+  padding-left: 0;
+}
+
+:host ::ng-deep .ql-editor ul {
+  list-style-type: disc !important;
+  list-style-position: outside !important;
+  margin-left: 1.5rem;
+  padding-left: 0;
+}
+
+:host ::ng-deep .ql-editor ol li,
+:host ::ng-deep .ql-editor ul li {
+  padding-left: 0.5rem;
+}
+
+:host ::ng-deep .view-mode .blot-formatter__overlay,
+:host ::ng-deep .view-mode .blot-formatter__toolbar,
+:host ::ng-deep .view-mode .blot-formatter__resize-handle {
+  display: none !important;
+  pointer-events: none !important;
+}

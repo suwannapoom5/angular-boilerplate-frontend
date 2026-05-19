@@ -1,0 +1,10 @@
+<div class="noti-toast-body ngx-toastr noti-toast" [ngClass]="typeClass" (click)="tapToast()">
+    <app-tabler-icon class="me-1" [size]="24" [name]="icon"></app-tabler-icon>
+
+    <div class="flex-grow-1">
+        <!-- ถ้าคุณจะใส่ html เอง: ใช้ innerHTML + sanitize (แนะนำ) -->
+        <div [innerHTML]="message"></div>
+    </div>
+
+    <button type="button" class="btn-close ms-2" aria-label="Close" (click)="remove()"></button>
+</div>

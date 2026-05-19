@@ -1,0 +1,89 @@
+<div class="w-100" [class.disable-events]="viewMode">
+  <div class="text-editor-wrapper mb-2" [hidden]="hiddenHeader">
+    <div [id]="toolbarId" class="ql-toolbar ql-snow">
+      <span class="ql-formats">
+        <span class="ql-formats">
+          <button class="ql-undo" type="button" aria-label="Undo">
+            <app-tabler-icon
+              [name]="_TablerIcon.ArrowBackUp"
+              [class]="''"
+              [size]="20"
+            >
+            </app-tabler-icon>
+          </button>
+          <button class="ql-redo" type="button" aria-label="Redo">
+            <app-tabler-icon
+              [name]="_TablerIcon.ArrowForwardUp"
+              [class]="''"
+              [size]="20"
+            >
+            </app-tabler-icon>
+          </button>
+        </span>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-header" [disabled]="viewMode">
+          <option selected></option>
+          <option value="1"></option>
+          <option value="2"></option>
+          <option value="3"></option>
+        </select>
+      </span>
+
+      <span class="ql-formats">
+        <select class="ql-align">
+          <option selected></option>
+          <option value="center"></option>
+          <option value="right"></option>
+          <option value="justify"></option>
+        </select>
+      </span>
+
+      <span class="ql-formats">
+        <select class="ql-color"></select>
+      </span>
+
+      <span class="ql-formats">
+        <button class="ql-bold"></button>
+        <button class="ql-italic"></button>
+        <button class="ql-underline"></button>
+        <button class="ql-strike"></button>
+      </span>
+
+      <span class="ql-formats">
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+      </span>
+
+      <span class="ql-formats">
+        <button class="ql-link"></button>
+        <button class="ql-image"></button>
+      </span>
+    </div>
+  </div>
+
+  <div
+    class="text-editor-container"
+    [class.is-invalid]="ngControl.invalid && ngControl.touched && !viewMode"
+  >
+    <quill-editor
+      #editor
+      [(ngModel)]="value"
+      (ngModelChange)="onInternalChange($event)"
+      (onBlur)="onTouched()"
+      (onEditorCreated)="editorCreated($event)"
+      [modules]="modules"
+      [formats]="formats"
+      [readOnly]="viewMode || disabled"
+      class="w-100"
+      [ngClass]="{ 'view-mode': viewMode }"
+      [styles]="{
+        minHeight: '260px',
+        borderRadius: '1rem',
+        backgroundColor: viewMode ? 'rgb(229, 229, 229)' : 'white'
+      }"
+      placeholder="กรุณาพิมพ์ข้อความที่นี่..."
+    >
+    </quill-editor>
+  </div>
+</div>

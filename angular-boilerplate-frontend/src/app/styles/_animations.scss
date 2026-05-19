@@ -1,0 +1,76 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+@keyframes fadeZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeZoomOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+.animate__fadeZoomIn {
+  animation: fadeZoomIn 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.animate__fadeZoomOut {
+  animation: fadeZoomOut 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.animate-left {
+  transform-origin: top left !important;
+}
+
+.offcanvas {
+  /* Duration | Timing Function | Property (optional, but good practice for clarity) */
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) !important; /* Ease-in curve */
+}

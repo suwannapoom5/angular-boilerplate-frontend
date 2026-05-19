@@ -1,0 +1,63 @@
+@use "variables" as *;
+
+.no-underline {
+  text-decoration: none !important;
+}
+.ql-editor {
+  word-spacing: 0.2em;
+
+  p {
+    min-height: 1rem;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  h3 {
+    font-size: 1.17em;
+  }
+  h4 {
+    font-size: 1em;
+  }
+  h5 {
+    font-size: 0.83em;
+  }
+  h6 {
+    font-size: 0.67em;
+  }
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  transform: translateY(-50%);
+}
+
+.divider span {
+  font-size: 14px;
+  position: relative;
+  background: #fff;
+  padding: 0 10px;
+  color: #888;
+}
+
+.auth-card {
+  border-radius: 1rem !important;
+  width: 552px;
+}
+.rounded-custom {
+  border-radius: 1rem !important;
+}

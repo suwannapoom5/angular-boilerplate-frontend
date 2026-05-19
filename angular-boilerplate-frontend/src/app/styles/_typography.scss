@@ -1,0 +1,92 @@
+@use "variables" as *;
+
+small {
+  font-weight: 400;
+}
+label,
+p,
+a {
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+a {
+  color: $my-grey-dark-1 !important;
+}
+
+a:not(.btn, .page-link, .router-link) {
+  // color: var(--color-primary-3) !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+a:hover:not(.btn) {
+  color: var(--color-success) !important;
+}
+
+.text-primary {
+  color: var(--color-primary-1) !important;
+}
+.text-primary-1 {
+  color: var(--color-primary-1) !important;
+}
+.text-primary-2 {
+  color: var(--color-primary-2) !important;
+}
+.text-primary-3 {
+  color: var(--color-primary-3) !important;
+}
+
+.text-primary-4 {
+  color: var(--color-primary) !important;
+}
+
+.text-danger {
+  color: var(--color-danger) !important;
+}
+
+.text-danger-1 {
+  color: $danger !important;
+}
+
+.text-warning {
+  color: var(--color-warning) !important;
+}
+.text-success {
+  color: var(--color-success) !important;
+}
+
+.text-success-1 {
+  color: var(--color-primary) !important;
+}
+
+.text-success-2 {
+  color: $success !important;
+}
+
+.text-warning-1 {
+  color: var(--color-warning) !important;
+}
+
+.text-grey {
+  color: $my-grey !important;
+}
+
+.text-dark-1 {
+  color: $my-grey-dark-1 !important;
+}
+
+.text-info-1 {
+  color: $info !important;
+}
+
+.text-grey-light {
+  color: $my-grey-light-1 !important;
+}

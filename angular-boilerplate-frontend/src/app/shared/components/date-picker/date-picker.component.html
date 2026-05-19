@@ -1,0 +1,105 @@
+<label for="" class="text-nowrap" *ngIf="labelText">{{ labelText }}<span *ngIf="required && showRequireSymbold"
+    class="text-danger">*</span></label>
+<div class="position-relative cursor-pointer">
+  @if (isRange) {
+    <input type="text" [(ngModel)]="display" (ngModelChange)="onDisplayChange($event)" class="form-control form-calendar {{
+      readonly ? 'bg-readonly' : 'bg-white'
+    }}" [ngClass]="{ 'border-danger': errorValidate, 'date-disable': isDisabled }"
+      placeholder="วว-ดด-ปปปป - วว-ดด-ปปปป" #displayInput (click)="toggleCalendar(d)" />
+    <input name="datepicker" class="form-control d-none" ngbDatepicker #d="ngbDatepicker" [autoClose]="'outside'"
+      (dateSelect)="onRangeDateChange($event)" [displayMonths]="2" outsideDays="hidden"
+      [startDate]="fromDate || todayStruct" tabindex="-1" [positionTarget]="displayInput" [dayTemplate]="t"
+      [minDate]="startDayStruct" [markDisabled]="date_to_disabled" />
+
+    <ng-template #t let-date let-focused="focused">
+      <span class="custom-day" [class.focused]="focused" [class.range]="isValueRange(date)"
+        [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null">
+        {{ date.day }}
+      </span>
+    </ng-template>
+    <div class="btn-calendar {{
+      readonly ? 'bg-readonly' : 'bg-white'
+    }} position-absolute end-0 translate-middle-y me-3" [ngClass]="{ 'date-disable': isDisabled }" style="bottom: -5px"
+      #btnToggle type="button" (click)="toggleCalendar(d)">
+      <app-tabler-icon [name]="_TablerIcon.CalendarWeek" [iconClass]="'text-muted'" [size]="20"></app-tabler-icon>
+    </div>
+
+  } @else if (isMonthRange){
+    <div class="d-flex gap-1 flex-wrap align-items-center selected-month-container">
+      <ngb-datepicker [displayMonths]="1" startView="months" [startDate]="fromStartMonth" class="month-picker"
+        [class.border-danger]="isRangeInvalid || errorValidate" (navigate)="onMonthSelect($event, 'from')">
+      </ngb-datepicker>
+      <p class="mb-0 px-2">-</p>
+      <ngb-datepicker [displayMonths]="1" startView="months" [startDate]="toEndMonth" class="month-picker"
+        [class.border-danger]="isRangeInvalid || errorValidate" (navigate)="onMonthSelect($event, 'to')">
+      </ngb-datepicker>
+    </div>
+
+    <div *ngIf="isRangeInvalid" class="text-danger">
+      <small *ngIf="isRangeInvalid">
+        ปีสิ้นสุดต้องมากกว่าหรือเท่ากับปีเริ่มต้น
+      </small>
+    </div>
+  } @else if (isYearRange){
+    <div class="d-flex gap-1 flex-wrap align-items-center selected-year-container">
+      <ngb-datepicker [displayMonths]="1" startView="months" [startDate]="fromStartMonth"
+        class="month-picker year-picker-1" [class.border-danger]="isRangeInvalid || errorValidate"
+        (navigate)="onMonthSelect($event, 'from')">
+      </ngb-datepicker>
+      <p class="mb-0 px-2">-</p>
+      <ngb-datepicker [displayMonths]="1" startView="months" [startDate]="toEndMonth" class="month-picker year-picker-2"
+        [class.border-danger]="isRangeInvalid || errorValidate" (navigate)="onMonthSelect($event, 'to')">
+      </ngb-datepicker>
+    </div>
+
+    <div *ngIf="isRangeInvalid" class="text-danger">
+      <small *ngIf="isRangeInvalid">
+        ปีสิ้นสุดต้องมากกว่าหรือเท่ากับปีเริ่มต้น
+      </small>
+    </div>
+  } @else { @if (endByToday) {
+      <input class="form-control form-calendar {{ dpClass }} {{
+      readonly ? 'bg-readonly' : 'bg-white'
+    }}" type="text" (click)="datepicker.click()" placeholder="วว-ดด-ปปปป" [(ngModel)]="temp_display" [ngStyle]="{
+      'border-color': required && !readonly && !value && isTouched ? 'red' : ''
+    }" [ngClass]="{ 'border-danger': errorValidate }" />
+
+      <input class="d-none form-control form-calendar {{ dpClass }} {{
+      readonly ? 'bg-readonly' : 'bg-white'
+    }}" type="text" readonly placeholder="วว-ดด-ปปปป" [(ngModel)]="display" (ngModelChange)="onChanged($event)"
+        ngbDatepicker #datepicker #d="ngbDatepicker" [positionTarget]="btnToggle" [attr.required]="required ? '' : null"
+        [disabled]="isDisabled" [placement]="'bottom-end'" navigation="select" style="cursor: pointer"
+        (click)="toggleCalendar(d)" [minDate]="startDayStruct" [maxDate]="todayStruct" [ngStyle]="{
+      'border-color': required && !readonly && !value && isTouched ? 'red' : ''
+    }" [ngClass]="{ 'border-danger': errorValidate }" [markDisabled]="date_to_disabled" />
+      <div class="btn-calendar {{
+      readonly ? 'bg-readonly' : 'bg-white'
+    }} position-absolute top-50 end-0 translate-middle-y me-3" #btnToggle type="button" (click)="toggleCalendar(d)">
+        <app-tabler-icon [name]="_TablerIcon.CalendarWeek" [iconClass]="'text-muted'" [size]="18"></app-tabler-icon>
+      </div>
+    } @else {
+      <input class="form-control form-calendar {{ dpClass }} {{
+      readonly ? 'bg-readonly' : 'bg-white'
+    }}" type="text" (click)="datepicker.click()" placeholder="วว-ดด-ปปปป" [(ngModel)]="temp_display" [ngStyle]="
+        { 'border-color' : required && !readonly && !value && isTouched ? 'red' : '' }"
+        [ngClass]="{ 'border-danger': errorValidate }" />
+
+      <input class="d-none form-control form-calendar {{ dpClass }} {{
+      readonly ? 'bg-readonly' : 'bg-white'
+    }}" type="text" readonly placeholder="วว-ดด-ปปปป" [(ngModel)]="display" (ngModelChange)="onChanged($event)"
+        ngbDatepicker #datepicker #d="ngbDatepicker" [positionTarget]="btnToggle" [attr.required]="required ? '' : null"
+        [disabled]="isDisabled" [placement]="'bottom-end'" navigation="select" style="cursor: pointer"
+        (click)="toggleCalendar(d)" [minDate]="startDayStruct" [ngStyle]="{
+      'border-color': required && !readonly && !value && isTouched ? 'red' : ''
+    }" [markDisabled]="date_to_disabled" [ngClass]="{ 'border-danger': errorValidate }" />
+      <div class="btn-calendar {{
+      readonly ? 'bg-readonly' : 'bg-white'
+    }} position-absolute top-50 end-0 translate-middle-y me-3" #btnToggle type="button" (click)="toggleCalendar(d)">
+        <app-tabler-icon [name]="_TablerIcon.CalendarWeek" [iconClass]="'text-muted'" [size]="18"></app-tabler-icon>
+      </div>
+    } }
+</div>
+<div class="text-danger my-1" *ngIf="(required && !readonly && !value && isTouched) || errorValidate">
+  <small>{{ requiredText }}</small>
+</div>
