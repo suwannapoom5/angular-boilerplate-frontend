@@ -1,0 +1,135 @@
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-light">
+  <div class="row w-100 justify-content-center">
+    <div class="col-11 col-sm-10 col-md-8 col-lg-5 col-xl-4">
+
+      <div class="card border-0 shadow rounded-4">
+        <div class="card-body p-4 p-md-5">
+
+          <div class="text-center mb-4">
+            <div
+              class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+              style="width:72px;height:72px;"
+            >
+              🔐
+            </div>
+
+            <h3 class="fw-bold mb-1">
+              Welcome Back
+            </h3>
+
+            <p class="text-muted mb-0">
+              Sign in to continue
+            </p>
+          </div>
+
+          <form (ngSubmit)="login()">
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">
+                Username
+              </label>
+
+              <div class="input-group">
+                <span class="input-group-text">
+                  👤
+                </span>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter username"
+                  [ngModel]="username()"
+                  (ngModelChange)="username.set($event)"
+                  name="username"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                Password
+              </label>
+
+              <div class="input-group">
+                <span class="input-group-text">
+                  🔑
+                </span>
+
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Enter password"
+                  [ngModel]="password()"
+                  (ngModelChange)="password.set($event)"
+                  name="password"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="d-grid mb-3">
+              <button
+                type="submit"
+                class="btn btn-success btn-lg"
+                [disabled]="loading()"
+              >
+                @if (loading()) {
+                  <span
+                    class="spinner-border spinner-border-sm me-2"
+                  ></span>
+                  Signing In...
+                } @else {
+                  Login
+                }
+              </button>
+            </div>
+
+            <div class="row g-2">
+              <div class="col-12 col-md-6">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary w-100"
+                  (click)="showToken()"
+                >
+                  Show Token
+                </button>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <button
+                  type="button"
+                  class="btn btn-outline-danger w-100"
+                  (click)="logout()"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      @if (loading()) {
+        <div class="alert alert-info mt-3 shadow-sm">
+          <span class="spinner-border spinner-border-sm me-2"></span>
+          กำลังโหลดข้อมูล...
+        </div>
+      }
+
+      @if (result()) {
+        <div class="card mt-3 shadow-sm border-0">
+          <div class="card-header fw-semibold">
+            API Response
+          </div>
+
+          <div class="card-body">
+            <pre class="mb-0">{{ result() | json }}</pre>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</div>

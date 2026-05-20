@@ -1,7 +1,7 @@
-const WEB_BASE_URL = 'http://localhost:4200/'
-const MASTERDATA_API_URL = 'http://localhost:4200/'
-const AUTHEN_API_URL = 'http://localhost:4200/'
-const WEBSOCKET_BASE_URL = 'http://localhost:4200/'
+const WEB_BASE_URL = 'http://localhost:5114'
+const MASTERDATA_API_URL = 'http://localhost:5114'
+const AUTHEN_API_URL = 'http://localhost:5114'
+const WEBSOCKET_BASE_URL = 'http://localhost:5114'
 
 export const environment = {
     SECRET_KEY: '',

@@ -1,23 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { AuthenApiService } from '../../core/services/base-api/authen-api.service';
 import { HeaderService } from '../../core/services/helper/header.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
   templateUrl: './apitesting.component.html',
   styleUrl: './apitesting.component.scss'
 })
-export class APITestingComponent {
+export class APITestingComponent implements OnInit {
+
   loading = false;
   result: any = null;
 
   constructor(
     private authenApi: AuthenApiService,
-    private headerService: HeaderService,
-  ) {}
+    private headerService: HeaderService
+  ) { }
 
   ngOnInit(): void {
     this.headerService.setHeader(
@@ -26,26 +31,33 @@ export class APITestingComponent {
     );
   }
 
-  private showResult(res: any) {
+  private showResult(res: any): void {
     this.result = res?.body ?? res;
     console.log('API RESULT:', res);
   }
 
-  private showError(err: any) {
+  private showError(err: any): void {
     this.result = {
       error: true,
-      message: err?.message || 'เกิดข้อผิดพลาด'
+      status: err?.status,
+      message: err?.error?.message || err?.message || 'เกิดข้อผิดพลาด',
+      detail: err?.error ?? null
     };
+
     console.error(err);
   }
 
-  testGet() {
+  private startLoading(): void {
     this.loading = true;
+    this.result = null;
+  }
 
-    this.authenApi.get('users', {
+  testGet(): void {
+    this.startLoading();
+
+    this.authenApi.get('api/users', {
       page: 1,
       page_size: 10,
-      search: ''
     }).subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
@@ -53,8 +65,8 @@ export class APITestingComponent {
     });
   }
 
-  testPost() {
-    this.loading = true;
+  testPost(): void {
+    this.startLoading();
 
     const payload = {
       name: 'Test User',
@@ -62,15 +74,15 @@ export class APITestingComponent {
       is_active: true
     };
 
-    this.authenApi.post('users', payload).subscribe({
+    this.authenApi.post('api/users', payload).subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
       complete: () => this.loading = false
     });
   }
 
-  testPut() {
-    this.loading = true;
+  testPut(): void {
+    this.startLoading();
 
     const payload = {
       name: 'Updated User',
@@ -78,111 +90,135 @@ export class APITestingComponent {
       is_active: true
     };
 
-    this.authenApi.put('users/1', payload).subscribe({
+    this.authenApi.put('api/users/1', payload).subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
       complete: () => this.loading = false
     });
   }
 
-  testPatch() {
-    this.loading = true;
+  testPatch(): void {
+    this.startLoading();
 
     const payload = {
       is_active: false
     };
 
-    this.authenApi.patch('users/1/status', payload).subscribe({
+    this.authenApi.patch('api/users/1/status', payload).subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
       complete: () => this.loading = false
     });
   }
 
-  testDelete() {
-    this.loading = true;
+  testDelete(): void {
+    this.startLoading();
 
-    this.authenApi.delete('users/1').subscribe({
+    this.authenApi.delete('api/users/1').subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
       complete: () => this.loading = false
     });
   }
 
-  testDeleteWithBody() {
-    this.loading = true;
+  testDeleteWithBody(): void {
+    this.startLoading();
 
     const payload = {
       ids: [1, 2, 3]
     };
 
-    this.authenApi.delete_with_body('users', payload).subscribe({
+    this.authenApi.delete_with_body('api/users', payload).subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
       complete: () => this.loading = false
     });
   }
 
-  testPostFormData() {
-    this.loading = true;
+  testPostFormData(): void {
+    this.startLoading();
 
     const formData = new FormData();
+
     formData.append('name', 'FormData User');
     formData.append('email', 'formdata@example.com');
 
-    this.authenApi.post_formData('users/upload', formData).subscribe({
+    this.authenApi.post_formData(
+      'api/users/upload',
+      formData
+    ).subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
       complete: () => this.loading = false
     });
   }
 
-  testPutFormData() {
-    this.loading = true;
+  testPutFormData(): void {
+    this.startLoading();
 
     const formData = new FormData();
-    formData.append('name', 'Update FormData User');
 
-    this.authenApi.put_formData('users/1/upload', formData).subscribe({
+    formData.append(
+      'name',
+      'Update FormData User'
+    );
+
+    this.authenApi.put_formData(
+      'api/users/1/upload',
+      formData
+    ).subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
       complete: () => this.loading = false
     });
   }
 
-  testPatchFormData() {
-    this.loading = true;
+  testPatchFormData(): void {
+    this.startLoading();
 
     const formData = new FormData();
-    formData.append('is_active', 'true');
 
-    this.authenApi.patch_formData('users/1/upload', formData).subscribe({
+    formData.append(
+      'is_active',
+      'true'
+    );
+
+    this.authenApi.patch_formData(
+      'api/users/1/upload',
+      formData
+    ).subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
       complete: () => this.loading = false
     });
   }
 
-  testDeleteFormData() {
-    this.loading = true;
+  testDeleteFormData(): void {
+    this.startLoading();
 
-    this.authenApi.delete_formData('users/file', {
-      file_id: 1
-    }).subscribe({
+    this.authenApi.delete_formData(
+      'api/users/file',
+      {
+        file_id: 1
+      }
+    ).subscribe({
       next: res => this.showResult(res),
       error: err => this.showError(err),
       complete: () => this.loading = false
     });
   }
 
-  testBlobGet() {
-    this.loading = true;
+  testBlobGet(): void {
+    this.startLoading();
 
-    this.authenApi.blob_get('users/export').subscribe({
+    this.authenApi.blob_get(
+      'api/users/export'
+    ).subscribe({
       next: blob => {
         this.result = {
           type: blob.type,
-          size: blob.size
+          size: blob.size,
+          message: 'Export GET สำเร็จ'
         };
       },
       error: err => this.showError(err),
@@ -190,18 +226,22 @@ export class APITestingComponent {
     });
   }
 
-  testBlobPost() {
-    this.loading = true;
+  testBlobPost(): void {
+    this.startLoading();
 
     const payload = {
       ids: [1, 2, 3]
     };
 
-    this.authenApi.blob_post('users/export', payload).subscribe({
+    this.authenApi.blob_post(
+      'api/users/export',
+      payload
+    ).subscribe({
       next: blob => {
         this.result = {
           type: blob.type,
-          size: blob.size
+          size: blob.size,
+          message: 'Export POST สำเร็จ'
         };
       },
       error: err => this.showError(err),
@@ -209,7 +249,7 @@ export class APITestingComponent {
     });
   }
 
-  clearResult() {
+  clearResult(): void {
     this.result = null;
   }
 }
